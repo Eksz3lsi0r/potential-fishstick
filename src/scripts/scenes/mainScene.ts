@@ -47,7 +47,13 @@ export default class MainScene extends Phaser.Scene {
     this.projectiles = this.add.group()
 
     // Setup collisions
-    this.physics.add.overlap(this.projectiles, this.enemies, this.handleProjectileEnemyCollision as any, undefined, this)
+    this.physics.add.overlap(
+      this.projectiles,
+      this.enemies,
+      this.handleProjectileEnemyCollision as any,
+      undefined,
+      this
+    )
     this.physics.add.overlap(this.base, this.enemies, this.handleBaseEnemyCollision as any, undefined, this)
 
     // Create UI
@@ -104,7 +110,7 @@ export default class MainScene extends Phaser.Scene {
   private startWave(): void {
     this.wave++
     this.ui.updateWave(this.wave)
-    
+
     // Calculate enemies for this wave
     this.enemiesInWave = 5 + (this.wave - 1) * 3
     this.enemiesSpawned = 0
@@ -170,7 +176,7 @@ export default class MainScene extends Phaser.Scene {
       this.enemies.remove(enemy)
 
       this.enemiesKilled++
-      
+
       // Check if wave is complete
       if (this.enemiesKilled >= this.enemiesInWave) {
         this.time.delayedCall(2000, () => {
@@ -226,27 +232,45 @@ export default class MainScene extends Phaser.Scene {
     if (this.spawnTimer) this.spawnTimer.remove()
 
     // Display game over
-    const gameOverBg = this.add.rectangle(this.cameras.main.width / 2, this.cameras.main.height / 2, 600, 400, 0x000000, 0.9)
-    const gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 - 50, 'GAME OVER', {
-      fontSize: '64px',
-      color: '#ff0000'
-    }).setOrigin(0.5)
+    const gameOverBg = this.add.rectangle(
+      this.cameras.main.width / 2,
+      this.cameras.main.height / 2,
+      600,
+      400,
+      0x000000,
+      0.9
+    )
+    const gameOverText = this.add
+      .text(this.cameras.main.width / 2, this.cameras.main.height / 2 - 50, 'GAME OVER', {
+        fontSize: '64px',
+        color: '#ff0000'
+      })
+      .setOrigin(0.5)
 
-    const statsText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 + 20, 
-      `Wave: ${this.wave}\nXP: ${Math.floor(this.xp)}\nGold: ${Math.floor(this.gold)}`, {
-      fontSize: '32px',
-      color: '#ffffff',
-      align: 'center'
-    }).setOrigin(0.5)
+    const statsText = this.add
+      .text(
+        this.cameras.main.width / 2,
+        this.cameras.main.height / 2 + 20,
+        `Wave: ${this.wave}\nXP: ${Math.floor(this.xp)}\nGold: ${Math.floor(this.gold)}`,
+        {
+          fontSize: '32px',
+          color: '#ffffff',
+          align: 'center'
+        }
+      )
+      .setOrigin(0.5)
 
-    const restartBtn = this.add.rectangle(this.cameras.main.width / 2, this.cameras.main.height / 2 + 120, 200, 60, 0x4a90e2)
+    const restartBtn = this.add
+      .rectangle(this.cameras.main.width / 2, this.cameras.main.height / 2 + 120, 200, 60, 0x4a90e2)
       .setInteractive()
       .on('pointerdown', () => this.scene.restart())
 
-    const restartText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 + 120, 'RESTART', {
-      fontSize: '28px',
-      color: '#ffffff'
-    }).setOrigin(0.5)
+    const restartText = this.add
+      .text(this.cameras.main.width / 2, this.cameras.main.height / 2 + 120, 'RESTART', {
+        fontSize: '28px',
+        color: '#ffffff'
+      })
+      .setOrigin(0.5)
   }
 
   update() {
@@ -254,12 +278,12 @@ export default class MainScene extends Phaser.Scene {
 
     // Update enemies
     this.enemies.getChildren().forEach((enemyObj: any) => {
-      (enemyObj as Enemy).update()
+      ;(enemyObj as Enemy).update()
     })
 
     // Update projectiles
     this.projectiles.getChildren().forEach((projectileObj: any) => {
-      (projectileObj as Projectile).update()
+      ;(projectileObj as Projectile).update()
     })
 
     // Auto-shoot at enemies

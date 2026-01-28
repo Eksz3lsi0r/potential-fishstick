@@ -40,7 +40,7 @@ export default class Enemy extends Phaser.GameObjects.Rectangle {
 
   takeDamage(damage: number): boolean {
     this.currentHealth -= damage
-    
+
     // Flash effect when hit - using fillColor instead of setTint
     this.setFillStyle(0xffffff)
     this.scene.time.delayedCall(100, () => {

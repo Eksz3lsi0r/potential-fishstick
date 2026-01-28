@@ -24,8 +24,12 @@ export default class Projectile extends Phaser.GameObjects.Rectangle {
 
   update(): void {
     // Destroy if out of bounds
-    if (this.x < -50 || this.x > this.scene.cameras.main.width + 50 || 
-        this.y < -50 || this.y > this.scene.cameras.main.height + 50) {
+    if (
+      this.x < -50 ||
+      this.x > this.scene.cameras.main.width + 50 ||
+      this.y < -50 ||
+      this.y > this.scene.cameras.main.height + 50
+    ) {
       this.destroy()
     }
   }

@@ -61,7 +61,12 @@ export default class Base extends Phaser.GameObjects.Rectangle {
 
     // Health
     const healthWidth = (this.currentHealth / this.maxHealth) * barWidth
-    const healthColor = this.currentHealth > this.maxHealth * 0.5 ? 0x00ff00 : this.currentHealth > this.maxHealth * 0.25 ? 0xffff00 : 0xff0000
+    const healthColor =
+      this.currentHealth > this.maxHealth * 0.5
+        ? 0x00ff00
+        : this.currentHealth > this.maxHealth * 0.25
+        ? 0xffff00
+        : 0xff0000
     this.healthBar.fillStyle(healthColor)
     this.healthBar.fillRect(barX, barY, healthWidth, barHeight)
 

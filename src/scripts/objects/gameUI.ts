@@ -34,22 +34,27 @@ export default class GameUI {
       padding: { x: 10, y: 5 }
     })
 
-    this.waveText = scene.add.text(scene.cameras.main.width / 2, 20, 'Wave: 1', {
-      fontSize: '32px',
-      color: '#ffffff',
-      backgroundColor: '#000000',
-      padding: { x: 10, y: 5 }
-    }).setOrigin(0.5, 0)
+    this.waveText = scene.add
+      .text(scene.cameras.main.width / 2, 20, 'Wave: 1', {
+        fontSize: '32px',
+        color: '#ffffff',
+        backgroundColor: '#000000',
+        padding: { x: 10, y: 5 }
+      })
+      .setOrigin(0.5, 0)
 
     // Upgrade button
-    this.upgradeButton = scene.add.rectangle(scene.cameras.main.width - 100, 60, 150, 50, 0x4a90e2)
+    this.upgradeButton = scene.add
+      .rectangle(scene.cameras.main.width - 100, 60, 150, 50, 0x4a90e2)
       .setInteractive()
       .on('pointerdown', () => this.toggleUpgradeMenu())
 
-    this.upgradeButtonText = scene.add.text(scene.cameras.main.width - 100, 60, 'UPGRADES', {
-      fontSize: '20px',
-      color: '#ffffff'
-    }).setOrigin(0.5)
+    this.upgradeButtonText = scene.add
+      .text(scene.cameras.main.width - 100, 60, 'UPGRADES', {
+        fontSize: '20px',
+        color: '#ffffff'
+      })
+      .setOrigin(0.5)
 
     // Create upgrade menu (initially hidden)
     this.createUpgradeMenu()
@@ -64,20 +69,25 @@ export default class GameUI {
     this.upgradeMenu.add(bg)
 
     // Title
-    const title = this.scene.add.text(0, -170, 'UPGRADES', {
-      fontSize: '32px',
-      color: '#ffffff'
-    }).setOrigin(0.5)
+    const title = this.scene.add
+      .text(0, -170, 'UPGRADES', {
+        fontSize: '32px',
+        color: '#ffffff'
+      })
+      .setOrigin(0.5)
     this.upgradeMenu.add(title)
 
     // Close button
-    const closeBtn = this.scene.add.rectangle(220, -170, 40, 40, 0xff0000)
+    const closeBtn = this.scene.add
+      .rectangle(220, -170, 40, 40, 0xff0000)
       .setInteractive()
       .on('pointerdown', () => this.toggleUpgradeMenu())
-    const closeText = this.scene.add.text(220, -170, 'X', {
-      fontSize: '24px',
-      color: '#ffffff'
-    }).setOrigin(0.5)
+    const closeText = this.scene.add
+      .text(220, -170, 'X', {
+        fontSize: '24px',
+        color: '#ffffff'
+      })
+      .setOrigin(0.5)
     this.upgradeMenu.add(closeBtn)
     this.upgradeMenu.add(closeText)
 
@@ -85,8 +95,15 @@ export default class GameUI {
     this.upgradeMenu.setDepth(100)
   }
 
-  public addUpgradeOption(name: string, description: string, cost: number, yOffset: number, callback: () => void): void {
-    const btn = this.scene.add.rectangle(0, yOffset, 450, 60, 0x4a90e2)
+  public addUpgradeOption(
+    name: string,
+    description: string,
+    cost: number,
+    yOffset: number,
+    callback: () => void
+  ): void {
+    const btn = this.scene.add
+      .rectangle(0, yOffset, 450, 60, 0x4a90e2)
       .setInteractive()
       .on('pointerdown', callback)
       .on('pointerover', () => btn.setFillStyle(0x5aa0f2))
